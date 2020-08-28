@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu</title>
+	<style type="text/css">
+		body{
+			width: 960px;
+			margin: 0 auto;
+		}
+
+		.product{
+			width: 250px;
+			float: left;
+			margin: 10px;
+			height: 370px;
+			/*border: 1px solid #000;*/
+		}
+
+		img{
+			width: 200px;
+			height: 230px;
+		}
+
+		.add_to_cart{
+			background-color: #000;
+			color: #fff;
+		}
+
+		#uniquePic{
+			width: 170px;
+		}
+
+		.header_row{
+			text-align: center;
+			/*outline: 1px solid black;*/
+			height: 70px;
+		}
+
+		ul{
+			list-style-type: none;
+		}
+
+		li{
+			display: inline;
+		}
+
+		#searchInput{
+			height: 38px;
+			width: 400px;
+			margin-top: 25px;
+			font-size: 18px;
+		}
+
+		#buttonSearch{
+			margin-left: 3px;
+			text-transform: uppercase;
+		}
+
+		#cart{
+			background-color: #000;
+			margin-left: 15px;
+			color: #fff;
+			text-transform: uppercase;
+		}
+
+	</style>
+</head>
+<body>
+	<section id="header">
+		<div class="header_row">
+			<input type="search" name="" placeholder="Search by product name" [formControl]="searchInput" id="searchInput">
+
+			<button mat-raised-button color="primary" type="button" id="buttonSearch" (click)="searchProduct()"><mat-icon>search</mat-icon></button>
+
+			<button matBadge="{{totalItems}}" matBadgeColor="black" mat-raised-button type="button" id="cart" (click)="goToCart()"><mat-icon >shopping_cart</mat-icon></button>
+		</div>
+	</section>
+
+	<section id="contents">
+		<!--first row-->
+		<ul>
+			<li *ngFor="let product of productsList">
+				<mat-card class="product">
+				<mat-card-header>
+					<img src="../assets/{{product.image}}">
+				</mat-card-header>
+				<mat-card-content>
+					<label><strong>{{product.productName}}</strong></label>
+					<p>{{product.productDescription}}</p>
+					<label><strong>Price R{{product.unitPrice}}</strong></label>
+				</mat-card-content>
+				<mat-card-actions>
+					<button mat-raised-button type="submit" class="add_to_cart" (click)="addToCart(product)" id="1"><mat-icon>add_shopping_cart</mat-icon> ADD TO CART</button>
+				</mat-card-actions>
+			</mat-card>
+
+			</li>
+
+
+		</ul>
+	</section>
+</body>
+</html>

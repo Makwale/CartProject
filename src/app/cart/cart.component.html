@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cart</title>
+
+	<style type="text/css">
+		body{
+			width: 960px;
+			margin: 0 auto;
+		}
+
+		#cart{
+			width: 65%;
+			float: left;
+		}
+
+		#payment{
+			width: 30%;
+			float: left;
+			height: 100%;
+			background-color: lightgray;
+			padding: 20px;
+		}
+
+		#image{
+			width: 25%;
+			float: left;
+		}
+
+		#details{
+			width: 55%;
+			float: left;
+			margin-left: 30px;
+		}
+
+		img{
+			width: 150px;
+			height: 120%;
+			margin-top: 4px;
+		}
+
+		#items #details button{
+			margin: 5px;
+			width: 90px;
+		}
+
+		#items{
+			margin-top: 50px;
+			width: 100%;
+			float: left;
+			/*outline: 1px solid black; */
+		}
+
+		#prodName strong{
+			font-size: 130%;
+		}
+
+		#tot .total{ 
+			margin-top: 7px;
+			margin-bottom: 5px; 
+			color: #000; 
+			letter-spacing: 1px;
+			font-size: 130%; 
+		}
+
+		#cart #items li{
+			list-style-type: none; 
+			/*outline: 1px solid black;*/
+			float: left; 
+			background-color: #fff; 
+			width: 100%;
+		}
+
+		#cart #items #item #details button{
+			background-color: #000;
+			color: #fff;
+		}
+
+		#cart #header{
+			height: 60px;
+		}
+
+		#searchInput{
+			height: 38px;
+			width: 350px;
+			margin-top: 25px;
+			margin-left: 40px;
+			font-size: 18px;
+		}
+
+		#buttonSearch{
+			margin-left: 3px;
+			text-transform: uppercase;
+		}
+	</style>
+
+</head>
+<body>
+
+	<section id="cart">
+		<section id="header">
+			<div class="header_row">
+				<label style="font-size: 170%;margin-top: 10px; font-weight: bold;">MY CART</label>
+				<input type="search" name="" placeholder="Search by product name" id="searchInput">
+
+				<button mat-raised-button color="primary" type="button" id="buttonSearch"><mat-icon>search</mat-icon></button>
+
+				<!-- <button mat-raised-button type="button" id="" >Cart</button> -->
+			</div>
+		</section>
+
+		<div id="tot" style="; height: 40px; margin-top: 30px;">
+			<label matBadge="{{totalItems}}" class="total" style=" float: left; margin-left: 5px;"><strong>Total Items </strong></label>
+			<label class="total" style="float: right; margin-right: 40px;"><strong>Total price R{{totalPrice}}</strong></label>
+		</div>
+
+		<section id="items">
+			
+				<li *ngFor="let item of itemsList">
+					<div id="item" style="float: left; box-shadow: 0px 0px 5px 0px lightgray; border-radius: 5px; width: 99%; margin-top: 10px; margin-bottom: 10px;">
+						<div id="image">
+							<img src="../assets/{{item.image}}">
+						</div>
+						<div id="details">
+							<h3 id="prodName"><b>{{item.productName}}</b></h3>
+							<label>{{item.productDescription}}</label><br>
+							<label>Item Number : {{item.itemNumber}}</label><br>
+							<label><strong>Price : R{{item.unitPrice}}</strong></label><br>
+							<button type="button" style="margin-left: 0px;" mat-raised-button>EDIT</button>
+							<button style="background-color: red;" type="button" mat-raised-button (click)="deleteItem(item.itemNumber, item.unitPrice)">DELETE</button>
+						</div>
+					</div>
+				</li>
+		</section>
+	</section>
+
+	<section id="payment">
+		<h2 style="margin: 15px auto 20px 60px; letter-spacing: 1px;"><strong>PAYMENT</strong></h2>
+		<form>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Card Number</mat-label>
+				<input required matInput type="text" name="">
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Card Holder</mat-label>
+				<input required matInput type="text" name="">
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Branch Coder</mat-label>
+				<input required matInput type="text" name="">
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>CVV</mat-label>
+				<input required matInput type="text" name="">
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-label>Payment Network</mat-label>
+				<mat-select required>
+				    <mat-option value="Visa">Visa</mat-option>
+				    <mat-option value="Mastercard">Mastercard</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<br>
+			<button mat-raised-button style="background-color: #000; color: #fff;">CHECKOUT</button>
+
+		</form>
+	</section>
+
+
+</body>
+</html>
