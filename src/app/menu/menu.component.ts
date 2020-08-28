@@ -40,15 +40,6 @@ export class MenuComponent implements OnInit {
 
 
 	searchProduct(){
-		/*let prodList = [];
-		for(let item of this.productsList){
-			if(item.productName.startsWith(this.searchInput.value)){
-				prodList.push(item);
-			}
-		}
-
-		this.productsList = prodList;*/
-
 		this.productsList = this.productsList.filter(
 			product => product.productName.startsWith(this.searchInput.value));
 	}
